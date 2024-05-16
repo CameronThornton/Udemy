@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Lesson3.fsx" />
     <Compile Include="Lesson2.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

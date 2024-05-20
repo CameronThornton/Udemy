@@ -1,6 +1,8 @@
 module Lesson3
 
 open System
+open System.Linq
+open System.Collections.Generic
 
 [<AbstractClass>]
 type IManager() =
@@ -46,3 +48,7 @@ type Employee2<'T>(fullName: string, age: int, department: string) =
 
 let emp = Employee("person", 33, "hamburger")
 let emp2 = Employee2<int>("person2", 332, "hamburger")
+
+let myList = List<int>()
+myList.Add(1)
+let myFilterList = myList.Where(fun x -> x = 1).FirstOrDefault()

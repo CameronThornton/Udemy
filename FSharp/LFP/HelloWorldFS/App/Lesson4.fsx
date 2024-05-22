@@ -2,11 +2,10 @@ open System
 
 let cons a b = List.Cons(a, b)
 
-let rec reduce f x =
-    fun (y) ->
-        match y with
-        | [] -> x
-        | head :: tail -> f head <| (reduce f x) tail
+let rec reduce f x y =
+    match y with
+    | [] -> x
+    | head :: tail -> f head <| (reduce f x) tail
 
 
 let add x y = x + y
@@ -26,17 +25,25 @@ let doubleAndCons2 = fAndCons double
 let map f = reduce (f >> cons) []
 let doubleAll2 = map double
 
+// printfn "%A" <| sum [ 1; 2; 3 ]
+// printfn "%A" <| mul [ 1; 2; 3; 4 ]
 
-printfn "%A" <| sum [ 1; 2; 3 ]
-printfn "%A" <| mul [ 1; 2; 3; 4 ]
+// printfn "%A"
+// <| anyTrue [ true; false; true; true ]
 
-printfn "%A"
-<| anyTrue [ true; false; true; true ]
+// printfn "%A" <| allTrue [ false ]
 
-printfn "%A" <| allTrue [ false ]
+// printfn "%A"
+// <| append [ true; true ] [ false; false ]
 
-printfn "%A"
-<| append [ true; true ] [ false; false ]
+// printfn "%A" <| doubleAll [ 1; 2; 3 ]
+// printfn "%A" <| doubleAll2 [ 1; 2; 3 ]
 
-printfn "%A" <| doubleAll [ 1; 2; 3 ]
-printfn "%A" <| doubleAll2 [ 1; 2; 3 ]
+
+let add' x y = x + y
+let inc = add 1
+let tt = inc 2
+
+let runDBQuery (connString: string) (query: string) = "dummy result"
+let localDb = runDBQuery "myLocalConnection"
+let aQuery = localDb "select * from table"

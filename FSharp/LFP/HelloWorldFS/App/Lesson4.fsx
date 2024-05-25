@@ -1,4 +1,5 @@
 open System
+open System.Collections.Generic
 
 let cons a b = List.Cons(a, b)
 
@@ -47,3 +48,22 @@ let tt = inc 2
 let runDBQuery (connString: string) (query: string) = "dummy result"
 let localDb = runDBQuery "myLocalConnection"
 let aQuery = localDb "select * from table"
+
+let myList = [ 1; 2; 3 ]
+
+let another =
+    myList
+    |> List.filter (fun x -> x = 1)
+    |> List.map (fun x -> x + 1)
+
+let myArray = [| 1; 2; 3 |]
+let z = myArray.[1]
+
+let yetAnother =
+    [ for x = 1 to 3 do
+          yield! myArray ]
+    |> Set.ofList
+
+let someSeq = { 1..3 } |> Seq.toList
+
+let newList = 1 :: myList

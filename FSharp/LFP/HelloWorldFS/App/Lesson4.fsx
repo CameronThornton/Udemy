@@ -67,3 +67,75 @@ let yetAnother =
 let someSeq = { 1..3 } |> Seq.toList
 
 let newList = 1 :: myList
+
+[<Struct>]
+type Person = { FirstName: string; LastName: string }
+
+let john =
+    { FirstName = "John"
+      LastName = "Connor" }
+
+let sarah = { john with FirstName = "Sarah" }
+
+let alterFirstName person firstName = { person with FirstName = firstName }
+
+let newJohn = alterFirstName john "John"
+
+let x = newJohn = john
+
+let { FirstName = name } = sarah
+
+type Color =
+    | White
+    | Black
+    | Rgb of string
+
+type PieceKind =
+    | King
+    | Queen
+    | Rook
+    | Knight
+    | Bishop
+    | Pawn
+
+type Piece = Piece of Color: Color * Kind: PieceKind
+
+type 'a MyList =
+    | Empty
+    | ListNode of 'a * 'a MyList
+
+let someList = ListNode(1, ListNode(2, Empty))
+
+let getCount list =
+    let rec innerCount list count =
+        match list with
+        | Empty -> count
+        | ListNode (_, subList) -> innerCount subList (count + 1)
+
+    innerCount list 0
+
+let piece = Piece(White, King)
+
+let outputPiece piece =
+    let (Piece (Color = c; Kind = k)) = piece
+    (c, k)
+
+let zz = outputPiece piece
+
+let a = getCount someList
+
+let users = Dictionary<int, string>()
+users.Add(5, "onur")
+
+let getUser id =
+    match users.TryGetValue id with
+    | true, username -> Some username
+    | _ -> None
+
+let someUser = getUser 5
+
+let printNumberOfChars (userName: string) = printf "%i" userName.Length
+
+match someUser with
+| Some userName -> printNumberOfChars userName
+| _ -> printf "%A" "No user found"

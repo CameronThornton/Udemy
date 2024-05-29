@@ -1,5 +1,8 @@
 open System
 
+#load "MyOption.fs"
+#load "MyBind.fs"
+
 // let x = 3
 
 // let text =
@@ -68,3 +71,66 @@ let shapeResult =
 let printCoordinates { X1 = x1; X2 = x2; Y1 = y1; Y2 = y2 } = $"{x1}, {x2}, {y1}, {y2}"
 
 printCoordinates line
+
+let inc x = x + 1
+let optInc = MyOption.map inc
+
+let z = Some 2 |> optInc
+let elevatedTwo = MyOption.ret 2
+
+let add x y = x + y
+
+let elevatedThree = MyOption.ret 3
+let elevatedAdd = MyOption.ret add
+
+//takes an elevated FUNCTION and an elevated value
+let applyOne = elevatedTwo |> MyOption.apply elevatedAdd
+let applyTwo = elevatedThree |> MyOption.apply applyOne
+let c = applyTwo
+
+let (<*>) = MyOption.apply
+
+let res =
+    (MyOption.ret add)
+    <*> elevatedTwo
+    <*> elevatedThree
+
+let resOne = (MyOption.ret add) <*> None <*> elevatedThree
+
+type Int32 with
+    static member ParseAsOption(str: string) =
+        match Int32.TryParse str with
+        | false, _ -> None
+        | true, x -> Some x
+
+let bindOption f opt =
+    match opt with
+    | None -> None
+    | Some x -> f x
+
+let joinOption opt =
+    match opt with
+    | None -> None
+    | Some innerOpt -> innerOpt
+
+let bindOption2 f opt = joinOption (MyOption.map f opt)
+
+let d = bindOption (fun x -> Some <| x * 3) (Some 4)
+
+let inputOne = Some "abcde" |> bindOption Int32.ParseAsOption
+let inputTwo = Some "100" |> bindOption2 Int32.ParseAsOption
+let input3 = Some "200" |> MyOption.map Int32.ParseAsOption
+
+let (>>=) m f = Option.bind f m
+
+let liftedAdd = Some add
+
+let input4 =
+    liftedAdd
+    <*> (Some "100" >>= Int32.ParseAsOption)
+    <*> (Some "200" >>= Int32.ParseAsOption)
+
+let input5 =
+    liftedAdd
+    <*> (Some "100" >>= Int32.ParseAsOption)
+    <*> (Some "ABC" >>= Int32.ParseAsOption)

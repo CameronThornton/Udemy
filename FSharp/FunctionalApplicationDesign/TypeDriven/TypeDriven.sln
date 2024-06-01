@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TypeDrivenConsole", "TypeDrivenConsole\TypeDrivenConsole.fsproj", "{DBFB2D84-5743-4BEF-81F4-EF544BDBF5B4}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Bank", "Bank\Bank.fsproj", "{051DD1BA-72A3-4134-BBA0-B80329FF15CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{DBFB2D84-5743-4BEF-81F4-EF544BDBF5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBFB2D84-5743-4BEF-81F4-EF544BDBF5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBFB2D84-5743-4BEF-81F4-EF544BDBF5B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{051DD1BA-72A3-4134-BBA0-B80329FF15CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{051DD1BA-72A3-4134-BBA0-B80329FF15CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{051DD1BA-72A3-4134-BBA0-B80329FF15CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{051DD1BA-72A3-4134-BBA0-B80329FF15CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
